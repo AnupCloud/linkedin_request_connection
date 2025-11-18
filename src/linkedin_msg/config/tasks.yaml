@@ -1,0 +1,42 @@
+linkedin_login_task:
+  description: >
+    Login to LinkedIn using credentials from environment variables.
+    Use LINKEDIN_EMAIL and LINKEDIN_PASSWORD from the .env file.
+    Navigate to linkedin.com and perform the login process.
+    Verify successful login by checking for the presence of the user profile.
+  expected_output: >
+    Confirmation message that login was successful with user profile details.
+  agent: linkedin_automation_agent
+
+linkedin_search_task:
+  description: >
+    Search for a person on LinkedIn using the EXACT search query: {person_name}.
+    Use the LinkedIn search functionality to find matching profiles.
+    IMPORTANT: Click on the FIRST person that appears in the search results.
+    Navigate to their profile page and verify the profile is accessible.
+    Report the exact name and profile URL of the first result found.
+  expected_output: >
+    Details of the FIRST profile found in search results including exact name, headline, and profile URL.
+  agent: linkedin_automation_agent
+
+linkedin_connect_task:
+  description: >
+    Check if the person's profile has a Connect button available.
+    If the Connect button is present, click it and send a connection request with
+    a personalized note: {connection_note}.
+    The note should be friendly and explain why you want to connect.
+    If already connected, skip this step and report that connection already exists.
+  expected_output: >
+    Confirmation that the connection request was sent with the personalized note,
+    or a report that the person is already a connection.
+  agent: linkedin_automation_agent
+
+linkedin_message_task:
+  description: >
+    Check if the message option is available on the person's profile.
+    If the message button is available, click it and send a greeting message: "Hello".
+    If the message option is not available, report that messaging is not possible.
+  expected_output: >
+    Confirmation that the message was sent successfully or a report that messaging
+    is not available for this profile.
+  agent: linkedin_automation_agent

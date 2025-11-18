@@ -1,0 +1,220 @@
+╭─────────────────────────── Crew Execution Started ───────────────────────────╮
+│                                                                              │
+│  Crew Execution Started                                                      │
+│  Name: crew                                                                  │
+│  ID: 7dd5b763-1527-4052-a8a9-e02131fde22f                                    │
+│  Tool Args:                                                                  │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+🚀 Crew: crew
+└── 📋 Task: linkedin_login_task (ID: cb03f6dc-87a7-413f-be2a-dd40cfff769d)
+    Status: Executing Task...╭────────────────────────────── 🤖 Agent Started ──────────────────────────────╮
+│                                                                              │
+│  Agent: LinkedIn Automation Specialist                                       │
+│                                                                              │
+│  Task: Login to LinkedIn using credentials from environment variables. Use   │
+│  LINKEDIN_EMAIL and LINKEDIN_PASSWORD from the .env file. Navigate to        │
+│  linkedin.com and perform the login process. Verify successful login by      │
+│  checking for the presence of the user profile.                              │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+🚀 Crew: crew
+└── 📋 Task: linkedin_login_task (ID: cb03f6dc-87a7-413f-be2a-dd40cfff769d)
+    Status: Executing Task...
+    └── ❌ LLM Failed╭───────────────────────────────── LLM Error ──────────────────────────────────╮
+│                                                                              │
+│  ❌ LLM Call Failed                                                          │
+│  Error: litellm.NotFoundError: VertexAIException - {                         │
+│    "error": {                                                                │
+│      "code": 404,                                                            │
+│      "message": "models/gemini-pro is not found for API version v1beta, or   │
+│  is not supported for generateContent. Call ListModels to see the list of    │
+│  available models and their supported methods.",                             │
+│      "status": "NOT_FOUND"                                                   │
+│    }                                                                         │
+│  }                                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+🚀 Crew: crew
+└── 📋 Task: linkedin_login_task (ID: cb03f6dc-87a7-413f-be2a-dd40cfff769d)
+    Assigned to: LinkedIn Automation Specialist
+    
+    Status: ❌ Failed
+    └── ❌ LLM Failed╭──────────────────────────────── Task Failure ────────────────────────────────╮
+│                                                                              │
+│  Task Failed                                                                 │
+│  Name: linkedin_login_task                                                   │
+│  Agent: LinkedIn Automation Specialist                                       │
+│                                                                              │
+│  Tool Args:                                                                  │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────── Crew Failure ────────────────────────────────╮
+│                                                                              │
+│  Crew Execution Failed                                                       │
+│  Name: crew                                                                  │
+│  ID: 7dd5b763-1527-4052-a8a9-e02131fde22f                                    │
+│  Tool Args:                                                                  │
+│  Final Output:                                                               │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Traceback (most recent call last):
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1890, in completion
+    response = client.post(url=url, headers=headers, json=data)  # type: ignore
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/litellm/llms/custom_httpx/http_handler.py", line 780, in post
+    raise e
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/litellm/llms/custom_httpx/http_handler.py", line 762, in post
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCC4wZDWOFAEGgAaXL70xJ8vsX9JhDf7F4'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/litellm/main.py", line 2606, in completion
+    response = vertex_chat_completion.completion(  # type: ignore
+        model=model,
+    ...<17 lines>...
+        extra_headers=extra_headers,
+    )
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1894, in completion
+    raise VertexAIError(
+    ...<3 lines>...
+    )
+litellm.llms.vertex_ai.common_utils.VertexAIError: {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/src/linkedin_msg/main.py", line 30, in run
+    LinkedinMsg().crew().kickoff(inputs=inputs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/crew.py", line 698, in kickoff
+    result = self._run_sequential_process()
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/crew.py", line 812, in _run_sequential_process
+    return self._execute_tasks(self.tasks)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/crew.py", line 918, in _execute_tasks
+    task_output = task.execute_sync(
+        agent=agent_to_use,
+        context=context,
+        tools=cast(list[BaseTool], tools_for_task),
+    )
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/task.py", line 377, in execute_sync
+    return self._execute_core(agent, context, tools)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/task.py", line 528, in _execute_core
+    raise e  # Re-raise the exception after emitting the event
+    ^^^^^^^
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/task.py", line 441, in _execute_core
+    result = agent.execute_task(
+        task=self,
+        context=context,
+        tools=tools,
+    )
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/agent.py", line 471, in execute_task
+    raise e
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/agent.py", line 447, in execute_task
+    result = self._execute_without_timeout(task_prompt, task)
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/agent.py", line 543, in _execute_without_timeout
+    return self.agent_executor.invoke(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        {
+        ^
+    ...<4 lines>...
+        }
+        ^
+    )["output"]
+    ^
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/agents/crew_agent_executor.py", line 149, in invoke
+    formatted_answer = self._invoke_loop()
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/agents/crew_agent_executor.py", line 243, in _invoke_loop
+    raise e
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/agents/crew_agent_executor.py", line 189, in _invoke_loop
+    answer = get_llm_response(
+        llm=self.llm,
+    ...<3 lines>...
+        from_task=self.task,
+    )
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/utilities/agent_utils.py", line 253, in get_llm_response
+    raise e
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/utilities/agent_utils.py", line 246, in get_llm_response
+    answer = llm.call(
+        messages,  # type: ignore[arg-type]
+    ...<2 lines>...
+        from_agent=from_agent,
+    )
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/llm.py", line 1024, in call
+    return self._handle_non_streaming_response(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        params, callbacks, available_functions, from_task, from_agent
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/crewai/llm.py", line 799, in _handle_non_streaming_response
+    response = litellm.completion(**params)
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/litellm/utils.py", line 1330, in wrapper
+    raise e
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/litellm/utils.py", line 1205, in wrapper
+    result = original_function(*args, **kwargs)
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/litellm/main.py", line 3427, in completion
+    raise exception_type(
+          ~~~~~~~~~~~~~~^
+        model=model,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        extra_kwargs=kwargs,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2301, in exception_type
+    raise e
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/.venv/lib/python3.13/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 1315, in exception_type
+    raise NotFoundError(
+    ...<3 lines>...
+    )
+litellm.exceptions.NotFoundError: litellm.NotFoundError: VertexAIException - {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/src/linkedin_msg/main.py", line 76, in <module>
+    run()
+    ~~~^^
+  File "/Users/anup/Desktop/test_crew/linkedin_msg/src/linkedin_msg/main.py", line 32, in run
+    raise Exception(f"An error occurred while running the crew: {e}")
+Exception: An error occurred while running the crew: litellm.NotFoundError: VertexAIException - {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+

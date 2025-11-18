@@ -1,0 +1,27 @@
+[project]
+name = "linkedin_msg"
+version = "0.1.0"
+description = "linkedin_msg using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.165.1,<1.0.0",
+    "selenium>=4.0.0",
+    "webdriver-manager>=4.0.0",
+    "python-dotenv>=1.0.0",
+    "streamlit>=1.28.0"
+]
+
+[project.scripts]
+linkedin_msg = "linkedin_msg.main:run"
+run_crew = "linkedin_msg.main:run"
+train = "linkedin_msg.main:train"
+replay = "linkedin_msg.main:replay"
+test = "linkedin_msg.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
