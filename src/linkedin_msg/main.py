@@ -27,6 +27,19 @@ def run():
     Run the crew with inputs from environment variables.
     You can override these by editing the .env file.
     """
+    print("====================================================================================")
+    print("⚠️  DEPRECATION WARNING")
+    print("====================================================================================")
+    print("This synchronous script (main.py) is deprecated and will be removed in a future version.")
+    print("Please use the asynchronous version for better performance, especially for batch processing.")
+    print("\nTo run the async version for a single person:")
+    print("python -m src.linkedin_msg.main_async")
+    print("\nTo run in batch mode:")
+    print("1. Set BATCH_MODE=true in your .env file.")
+    print("2. Configure PERSON_NAMES and CONNECTION_NOTES in .env.")
+    print("3. Run: python -m src.linkedin_msg.main_async")
+    print("====================================================================================\n")
+
     # Load person name and connection note from environment variables
     # If not set, use default values
     person_name = os.getenv('PERSON_NAME', 'Harichandana Gonuguntla')
