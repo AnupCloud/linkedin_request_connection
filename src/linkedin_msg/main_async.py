@@ -91,9 +91,9 @@ async def run_batch(people: list):
     return results
 
 
-def run():
+async def run():
     """
-    Single person automation (synchronous).
+    Single person automation (asynchronous).
     """
     person_name = os.getenv('PERSON_NAME', 'John Smith')
     connection_note = os.getenv('CONNECTION_NOTE',
@@ -105,7 +105,12 @@ def run():
     }
 
     try:
-        LinkedinMsg().crew().kickoff(inputs=inputs)
+        # Use async kickoff for single run
+        result = await LinkedinMsg().crew().kickoff_async(inputs=inputs)
+        print("\n\n########################")
+        print("## Here is the result")
+        print("########################\n")
+        print(result)
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 
@@ -159,4 +164,4 @@ if __name__ == "__main__":
     if os.getenv('BATCH_MODE', 'false').lower() == 'true':
         run_batch_sync()
     else:
-        run()
+        asyncio.run(run())

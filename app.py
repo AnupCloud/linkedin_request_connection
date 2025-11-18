@@ -169,7 +169,7 @@ with col1:
 
                             # Run the automation with updated environment
                             result = subprocess.run(
-                                [sys.executable, "src/linkedin_msg/main.py"],
+                                [sys.executable, "src/linkedin_msg/main_async.py"],
                                 capture_output=True,
                                 text=True,
                                 timeout=300,
